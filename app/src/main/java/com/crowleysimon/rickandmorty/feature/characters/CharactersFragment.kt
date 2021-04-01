@@ -11,6 +11,7 @@ import com.airbnb.mvrx.withState
 import com.crowleysimon.rickandmorty.R
 import com.crowleysimon.rickandmorty.common.viewBinding
 import com.crowleysimon.rickandmorty.databinding.FragmentFirstBinding
+import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,16 +22,12 @@ class CharactersFragment : Fragment(R.layout.fragment_first), MavericksView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            viewModel.fetchCharacters()
-        }
+        viewModel.fetchCharacters()
     }
 
     override fun invalidate() {
         withState(viewModel) { state ->
-            Log.w("TAG", state.characters.size.toString())
+            binding.charactersListView.adapter = GroupieAdapter().apply { update(state.characters) }
         }
     }
 }
