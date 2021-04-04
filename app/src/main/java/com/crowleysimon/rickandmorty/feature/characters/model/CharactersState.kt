@@ -1,7 +1,7 @@
-package com.crowleysimon.rickandmorty.feature.characters
+package com.crowleysimon.rickandmorty.feature.characters.model
 
 import com.airbnb.mvrx.MavericksState
-import com.crowleysimon.rickandmorty.data.response.CharactersResponse.Character
+import com.crowleysimon.rickandmorty.feature.characters.model.CharacterAdapterItem
 import com.crowleysimon.rickandmorty.feature.characters.model.CharacterItem
 
 data class CharactersState(

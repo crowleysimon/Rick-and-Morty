@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
 }
 
@@ -39,8 +40,7 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
-    //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+    // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
 
     implementation "androidx.activity:activity-ktx:1.2.2"
@@ -59,6 +59,7 @@ dependencies {
 
     // Moshi https://github.com/square/moshi/blob/master/CHANGELOG.md
     implementation "com.squareup.moshi:moshi:1.11.0"
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.11.0'
 
     // Retrofit https://github.com/square/retrofit/blob/master/CHANGELOG.md

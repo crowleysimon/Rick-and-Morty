@@ -13,10 +13,10 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/CharacterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/CharacterFragment"
         android:name="com.crowleysimon.rickandmorty.feature.character.CharacterFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
@@ -24,5 +24,8 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <argument
+            android:name="character"
+            app:argType="com.crowleysimon.rickandmorty.feature.characters.model.CharacterItem" />
     </fragment>
 </navigation>

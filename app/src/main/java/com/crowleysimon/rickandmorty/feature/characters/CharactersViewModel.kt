@@ -3,10 +3,11 @@ package com.crowleysimon.rickandmorty.feature.characters
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.MavericksViewModelFactory
 import com.crowleysimon.rickandmorty.data.repository.CharacterRepository
-import com.crowleysimon.rickandmorty.data.response.CharactersResponse.Character
+import com.crowleysimon.rickandmorty.data.response.CharacterResponse
 import com.crowleysimon.rickandmorty.di.AssistedViewModelFactory
 import com.crowleysimon.rickandmorty.di.hiltMavericksViewModelFactory
 import com.crowleysimon.rickandmorty.feature.characters.model.CharacterItem
+import com.crowleysimon.rickandmorty.feature.characters.model.CharactersState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -17,15 +18,17 @@ class CharactersViewModel @AssistedInject constructor(
     private val repository: CharacterRepository,
 ) : MavericksViewModel<CharactersState>(state) {
 
+    private var characterList: List<CharacterResponse> = emptyList()
+
     fun fetchCharacters() {
         viewModelScope.launch {
-            val characters = repository.getCharacters()
-            setState { copy(characters = characters.map { it.mapToItem() }) }
+            characterList = repository.getCharacters()
+            setState { copy(characters = characterList.map { it.mapToItem() }) }
         }
     }
 
 
-    fun Character.mapToItem() = CharacterItem(id, name, status, image)
+    private fun CharacterResponse.mapToItem() = CharacterItem(id, name, status, image)
 
     @AssistedFactory
     interface Factory : AssistedViewModelFactory<CharactersViewModel, CharactersState> {
